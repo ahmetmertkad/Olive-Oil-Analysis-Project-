@@ -1,0 +1,226 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Olive Oil Quality</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <h1 class="logo">Olive Oil Quality</h1>
+        <ul class="nav-links">
+            <li class="active"><a href="{% url 'index' %}">Home</a></li>
+            {% if user.is_authenticated %}
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+            <li><a href="{% url 'table' %}">Table</a></li>
+            <li class="ctn"><a href="{% url 'styles' %}">Information</a></li>
+            <li><a href="{% url 'search' %}">Search</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li><a href="{% url 'user' %}">Account</a></li>
+            {% endif %}
+            {% if user.is_superuser %}
+            <li><a href="{% url 'admin:index' %}">Admin</a></li>
+            {% endif %}
+        </ul>
+        <img src="{% static 'images/menu-btn.png' %}" class="menu-btn">
+    </nav>
+
+    <div class="container">
+        <div class="widebox-wrapper">
+            <div class="wide-box">
+                <h1>Criteria for Evaluation and Correspondence of Olive Oil Types</h1>
+                <div class="info">
+                    <p>When evaluating the quality of olive oil, several criteria are commonly considered:</p>
+                    <ol class="list">
+                        <li>Acidity:</li>
+                        <p>Low acidity is desirable for high-quality olive oil.</p>
+                        <li>Peroxide Value:</li>
+                        <p>Low peroxide values indicate fresher oil with better preservation qualities.</p>
+                        <li>K232:</li>
+                        <p>Lower K232 values are associated with better oil quality.</p>
+                        <li>K270:</li>
+                        <p>Lower K270 values indicate a fresher oil with fewer secondary oxidation products.</p>
+                        <li>Delta-K:</li>
+                        <p>Lower delta-K values help in detecting adulteration with refined oils.</p>
+                        <li>Total Polyphenols:</li>
+                        <p>Higher polyphenol content indicates better flavor and stability.</p>
+                        <li>Moisture and Volatile Matter:</li>
+                        <p>Lower levels indicate better processing and storage conditions.</p>
+                        <li>Pyropheophytins:</li>
+                        <p>Lower values indicate less aging and degradation.</p>
+                        <li>1,2-Diacylglycerol (DAG):</li>
+                        <p>Higher values indicate better oil quality.</p>
+                    </ol>
+                </div>
+                <h2>Quality Score Calculation</h2>
+                <p>The quality of olive oil is assessed using several key parameters. Each parameter is assigned a weight based on its importance, and a score is calculated for each parameter based on specific thresholds. The overall quality score is a weighted sum of these individual scores, providing a comprehensive measure of the oil's quality.</p>
+                <h3>Parameters and Weights:</h3>
+                <table class="table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Weight</th>
+                    </tr>
+                    <tr>
+                        <td>Acidity</td>
+                        <td>20%</td>
+                    </tr>
+                    <tr>
+                        <td>Peroxide Value</td>
+                        <td>15%</td>
+                    </tr>
+                    <tr>
+                        <td>K232</td>
+                        <td>10%</td>
+                    </tr>
+                    <tr>
+                        <td>K270</td>
+                        <td>10%</td>
+                    </tr>
+                    <tr>
+                        <td>Delta-K</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td>Total Polyphenols</td>
+                        <td>20%</td>
+                    </tr>
+                    <tr>
+                        <td>Moisture and Volatiles</td>
+                        <td>5%</td>
+                    </tr>
+                    <tr>
+                        <td>Pyropheophytins</td>
+                        <td>10%</td>
+                    </tr>
+                    <tr>
+                        <td>1,2-DAG Content</td>
+                        <td>5%</td>
+                    </tr>
+                </table>
+                <h3>Scoring Methodology:</h3>
+                <p>Each parameter is scored based on its percentage falling within specific thresholds:</p>
+                <table class="table">
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Excellent</th>
+                        <th>Good</th>
+                        <th>Acceptable</th>
+                        <th>Poor</th>
+                    </tr>
+                    <tr>
+                        <td>Free Acidity</td>
+                        <td>≤ 0.3%</td>
+                        <td>0.4% - 0.8%</td>
+                        <td>0.9% - 1.5%</td>
+                        <td>> 1.5%</td>
+                    </tr>
+                    <tr>
+                        <td>Peroxide Value</td>
+                        <td>≤ 10 mEq O2/kg</td>
+                        <td>11 - 15 mEq O2/kg</td>
+                        <td>16 - 20 mEq O2/kg</td>
+                        <td>> 20 mEq O2/kg</td>
+                    </tr>
+                    <tr>
+                        <td>K232</td>
+                        <td>≤ 2.00</td>
+                        <td>2.01 - 2.50</td>
+                        <td>2.51 - 2.60</td>
+                        <td>> 2.60</td>
+                    </tr>
+                    <tr>
+                        <td>K270</td>
+                        <td>≤ 0.20</td>
+                        <td>0.21 - 0.25</td>
+                        <td>0.26 - 0.30</td>
+                        <td>> 0.30</td>
+                    </tr>
+                    <tr>
+                        <td>Delta-K</td>
+                        <td>≤ 0.01</td>
+                        <td>0.01 - 0.02</td>
+                        <td>0.02 - 0.03</td>
+                        <td>> 0.03</td>
+                    </tr>
+                    <tr>
+                        <td>Total Polyphenols</td>
+                        <td>> 400 mg/kg</td>
+                        <td>300 - 400 mg/kg</td>
+                        <td>200 - 300 mg/kg</td>
+                        <td>< 200 mg/kg</td>
+                    </tr>
+                    <tr>
+                        <td>Moisture and Volatiles</td>
+                        <td>≤ 0.1%</td>
+                        <td>0.1% - 0.2%</td>
+                        <td>0.2% - 0.3%</td>
+                        <td>> 0.3%</td>
+                    </tr>
+                    <tr>
+                        <td>Pyropheophytins</td>
+                        <td>≤ 10%</td>
+                        <td>10% - 15%</td>
+                        <td>15% - 20%</td>
+                        <td>> 20%</td>
+                    </tr>
+                    <tr>
+                        <td>1,2-DAG Content</td>
+                        <td>> 90%</td>
+                        <td>80% - 90%</td>
+                        <td>70% - 80%</td>
+                        <td>< 70%</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <h2>Register Olive Oil</h2>
+            <form method="POST" class="register-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Register</button>
+                {% if user.is_superuser %}
+                <a href="{% url 'export_olive_oil' %}" class="btn btn-primary">Export Olive Oil Data</a>
+                {% endif %}
+            </form>
+        </div>
+
+    <div class="container">
+        <div class="widebox-wrapper">
+            <div class="wide-box">
+                <h1>Olive Oil Quality Scores</h1>
+                <div class="oil-boxes">
+                    {% for oil in olive_oil_scores %}
+                    <div class="wide-box">
+                        <div class="oil-box">
+                            <p><strong>Name:</strong> {{ oil.name }}</p>
+                            <p><strong>Total Score:</strong> {{ oil.total_score }}</p>
+                            <p><strong>Type:</strong> {{ oil.oil_type }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>  
+    
+    <script>
+        const menuBtn = document.querySelector('.menu-btn');
+        const navlinks = document.querySelector('.nav-links');
+        menuBtn.addEventListener('click', () => {
+            navlinks.classList.toggle('mobile-menu');
+        });
+    </script>
+</body>
+
+</html>

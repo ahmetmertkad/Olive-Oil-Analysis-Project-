@@ -1,0 +1,107 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olive Oil Quality</title>
+    <link rel="stylesheet" href="{% static 'css/proje.css' %}">
+
+    <style>
+        body {
+
+        }
+        header {
+            background-image: url("{% static 'images/oliveleaf.jpeg' %}");
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <h1 class="logo">Olive Oil Quality</h1>
+        <ul class="nav-links">
+            <li class="active"><a href="{% url 'index' %}">Home</a></li>
+            {% if user.is_authenticated %}
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+            <li><a href="{% url 'table' %}">Table</a></li>
+            <li class="ctn"><a href="{% url 'styles' %}">Information</a></li>
+            <li><a href="{% url 'search' %}">Search</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li><a href="{% url 'user' %}">Account</a></li>
+            {% endif %}
+            {% if user.is_superuser %}
+            <li><a href="{% url 'admin:index' %}">Admin</a></li>
+            {% endif %}
+        </ul>
+        <img src="{% static 'images/menu-btn.png' %}" class="menu-btn">
+    </nav>
+    <header>
+        <div class="header-content">
+            <h2>Explore The Olive </h2>
+            <div class="line"></div>
+            <h1>Wonderful Gift</h1>
+            <a href="#" class="ctn">Contact Us</a>
+        </div>
+    </header>
+    <section class="events">
+        <div class="title">
+            <h1 style="color: black;">General Information About Our Project</h1>
+            <div class="line"></div>
+        </div>
+        <div class="row">
+            {% static 'images/analiz.jpg' %}
+            <div class="col">
+                <img src="{% static 'images/janine-joles--8nbY8W2YEE-unsplash.jpg' %}" height="200px" width="200px">
+                <h4>OBJECTIVE OF OUR PROJECT</h4>
+                <p>Our project aims to raise awareness about the quality and consumption of olive oil, which is widely used in daily life. By providing critical parameters to evaluate the chemical, physical and sensory quality of olive oil, it helps consumers make more informed choices. This approach promotes a healthy lifestyle by highlighting the health benefits of olive oil and setting quality standards.</p>
+                <a href="#" class="ctn">Learn More</a>
+            </div>
+            <div class="col">
+                <img src="{% static 'images/emre-RuqOeMvPlzQ-unsplash.jpg' %}" height="200px" width="200px">
+                <h4>WHY IS QUALITY ASSESSMENT IMPORTANT?</h4>
+                <p>Assessing the quality of olive oil is crucial for several reasons. Firstly, it ensures consumer satisfaction and trust by guaranteeing that the product meets specific standards of taste, aroma, and health benefits. Secondly, it protects against fraudulent practices such as adulteration or mislabeling, preserving the integrity of the industry. Additionally, accurate quality assessment helps producers maintain consistency in their products, fostering their reputation in the market and facilitating fair competition. Ultimately, by upholding quality standards, olive oil assessment promotes both consumer well-being and the sustainability of the olive oil industry..</p>
+                <a href="#" class="ctn">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="explore" style="background-image: url('{% static 'images/janine-joles--8nbY8W2YEE-unsplash.jpg' %}'); background-size: cover; background-position: center;">
+    <div class="explore-content">
+        <h1></h1>
+        <p style="color: black; font-size: 25px;">
+            Information is provided to facilitate the discovery of higher-quality products through chemical quality assessment, focusing solely on chemical analysis and quality evaluation.
+        </p>
+        <a href="" class="ctn">Learn More</a>
+    </div>
+</section>
+
+
+    <section class="tours">
+        <div class="col image-col">
+            <div class="image-gallery">
+                <img src="{% static 'images/analiz.jpg' %}" height="200px" width="200px" alt="">
+                <img src="{% static 'images/analiz2.jpg' %}" height="200px" width="200px" alt="">
+                <img src="{% static 'images/analiz3.png' %}" height="200px" width="200px" alt="">
+                <img src="{% static 'images/analiz4.jpg' %}" height="200px" width="200px" alt="">
+            </div>
+        </div>
+    </section>
+
+    <section class="footer">
+        <p>Unlocking the secrets of superior quality through meticulous assessment. Trust in our expertise to ensure the finest olive oil experiences.</p>
+        <a href="https://www.google.com" class="leave-link">Leave the website</a>
+    </section>
+
+    <script src="{% static 'js/home.js'%}"></script>
+</body>
+
+</html>

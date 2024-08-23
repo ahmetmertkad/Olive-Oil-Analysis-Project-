@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Methods of Quality Evaluation for Olive Oil</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/table.css' %}">
+</head>
+
+<body>
+  <nav class="navbar">
+    <h1 class="logo">Olive Oil Quality</h1>
+    <ul class="nav-links">
+      <li class="active"><a href="{% url 'index' %}">Home</a></li>
+      {% if user.is_authenticated %}
+      {% else %}
+      <li><a href="{% url 'login' %}">Login</a></li>
+      <li><a href="{% url 'register' %}">Register</a></li>
+      {% endif %}
+      <li><a href="{% url 'table' %}">Table</a></li>
+      <li class="ctn"><a href="{% url 'styles' %}">Information</a></li>
+      <li><a href="{% url 'search' %}">Search</a></li>
+      {% if user.is_authenticated %}
+      <li><a href="{% url 'logout' %}">Logout</a></li>
+      <li><a href="{% url 'user' %}">Account</a></li>
+      {% endif %}
+      {% if user.is_superuser %}
+            <li><a href="{% url 'admin:index' %}">Admin</a></li>
+            {% endif %}
+    </ul>
+    <img src="{% static 'images/menu-btn.png' %}" class="menu-btn">
+  </nav>
+  <div class="border">
+    <table class="content-table">
+      <tr>
+        <th>Evaluation Method</th>
+        <th>Evaluation Criteria</th>
+        <th>Benefits</th>
+        <th>Drawbacks</th>
+      </tr>
+      <tr>
+        <td>Nuclear Magnetic Resonance Spectroscopy (NMR)</td>
+        <td>Composition of fatty acids, presence of antioxidants, levels of contaminants like free fatty acids</td>
+        <td>Rapid and reliable results, non-destructive, accurate quantification</td>
+        <td>Requires specialized equipment and expertise, high cost</td>
+      </tr>
+      <tr>
+        <td>Fourier-Transform Infrared Spectroscopy (FTIR)</td>
+        <td>Fatty acid composition, antioxidant content, contaminant levels</td>
+        <td>Rapid and non-destructive analysis, measures absorption of infrared light</td>
+        <td>May require complex data interpretation, equipment costs</td>
+      </tr>
+      <tr>
+        <td>Differential Scanning Calorimetry (DSC)</td>
+        <td>Melting points, crystallization behavior, oxidative stability</td>
+        <td>Insights into thermal behavior, quantitative analysis</td>
+        <td>Requires careful sample preparation, equipment costs</td>
+      </tr>
+      <tr>
+        <td>Atmospheric Pressure Chemical Ionization-Mass Spectrometry (APCI-MS)</td>
+        <td>Chemical composition, presence of contaminants, fatty acid composition</td>
+        <td>Detailed molecular information, sensitive detection</td>
+        <td>Complex instrumentation, may require sample derivatization</td>
+      </tr>
+      <tr>
+        <td>Solid-Phase Microextraction (SPME) with Nonpolar and Bipolar Fibers</td>
+        <td>Aroma profile, flavor compounds, off-flavors</td>
+        <td>Rapid and sensitive analysis, non-destructive</td>
+        <td>Requires optimization of extraction conditions</td>
+      </tr>
+      <tr>
+        <td>Electronic Nose (HS-MS)</td>
+        <td>Volatile fraction, aromas, geographical origin</td>
+        <td>Discriminates between different aromas, rapid analysis</td>
+        <td>Requires calibration, may not provide detailed molecular information</td>
+      </tr>
+      <tr>
+        <td>Electronic Tongue</td>
+        <td>Taste profile, bitterness, geographical origin</td>
+        <td>Can differentiate taste profiles, automated analysis</td>
+        <td>May require calibration, interpretation of results</td>
+      </tr>
+    </table>
+  </div>
+</body>
+
+</html>

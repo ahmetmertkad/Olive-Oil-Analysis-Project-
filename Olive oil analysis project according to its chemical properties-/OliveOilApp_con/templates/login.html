@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Olive Oil Quality</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+</head>
+
+<body
+    style="background: url('{% static 'images/olive_tree_branch.webp' %}') no-repeat; background-size: cover; background-position: center;">
+
+    <nav class="navbar">
+        <h1 class="logo">Olive Oil Quality</h1>
+        <ul class="nav-links">
+            <li class="active"><a href="{% url 'index' %}">Home</a></li>
+            {% if user.is_authenticated %}
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+            <li><a href="{% url 'table' %}">Table</a></li>
+            <li class="ctn"><a href="{% url 'styles' %}">Information</a></li>
+            <li><a href="{% url 'search' %}">Search</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li><a href="{% url 'user' %}">Account</a></li>
+            {% endif %}
+            {% if user.is_superuser %}
+            <li><a href="{% url 'admin:index' %}">Admin</a></li>
+            {% endif %}
+        </ul>
+        <img src="{% static 'images/menu-btn.png' %}" class="menu-btn">
+    </nav>
+
+    <div class="wrapper">
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{message.tags}}">
+                {{message}}
+            </div>
+            {% endfor %}
+            {% endif %}
+            <h1 style="color: black;">Login</h1>
+            <div class="input-box">
+                {{form.username}}
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                {{form.password}}
+                <i class='bx bxs-lock-alt'></i>
+            </div>
+            <div class="input-box">
+                {{form.email}}
+                <i class='bx bxl-gmail'></i>
+            </div>
+            <div class="remember-forgot">
+                <label><input type="checkbox">Remember me</label>
+            </div>
+            <button type="submit" class="btn">Login</button>
+            <div class="register-link">
+                <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const menuBtn = document.querySelector('.menu-btn');
+        const navlinks = document.querySelector('.nav-links');
+
+        menuBtn.addEventListener('click', () => {
+            navlinks.classList.toggle('mobile-menu');
+        });
+    </script>
+
+</body>
+
+</html>

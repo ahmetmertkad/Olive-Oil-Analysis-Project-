@@ -1,0 +1,242 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+
+
+}
+a{
+  text-decoration: none;
+}
+
+.ctn {
+  padding: 8px 15px;
+  background: rgb(253, 255, 240);
+  border-radius: 30px;
+  color: rgb(0, 0, 0);
+}
+.navbar {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  display: flex; 
+  width: 100%; 
+  justify-content: space-between; 
+  padding: 20px;
+  color: rgb(255, 255, 255);
+  
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+
+
+}
+
+.nav-links li {
+  margin: 0 30px;
+  list-style: none;
+  
+}
+
+.nav-links li a {
+  color: aliceblue;
+  font-size: 20px;
+}
+
+ul {
+  list-style: none;
+
+}
+
+
+
+.active {
+  color: rgb(255, 0, 170);
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.menu-btn {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 40px;
+  cursor: pointer;
+  display: none;
+  
+
+
+}
+
+
+
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+}
+
+
+
+
+
+
+
+
+.box-wrapper {
+  display: flex;
+  background-color: rgba(241, 248, 241, 0.65); /* Light green */
+  padding: 20px;
+  margin-bottom: 100px;
+  border-radius: 7px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column; /* Make the box layout vertical */
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.85); /* White */
+  border-radius: 10px;
+  margin-bottom: 20px; /* Add margin between boxes */
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.image-wrapper img {
+  max-width: 100%; /* Ensure the image takes up the full width */
+  border-radius: 10px;
+  margin-bottom: 10px; /* Add space between image and text */
+}
+
+.info {
+  padding-left: 20px;
+  margin-top: 30px;
+}
+
+.wide-box {
+  margin-bottom: 20px;
+  border-radius: 20px;
+  background-color: rgba(245, 245, 245, 0.85); /* Light gray */
+  padding: 100px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+}
+
+th, td {
+  border: 1px solid rgba(204, 204, 204, 0.7);
+  padding: 8px;
+  text-align: left;
+}
+
+.container {
+  margin-top: 200px;
+}
+
+.widebox-wrapper {
+  background-color: rgba(241, 248, 241, 0.65);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.title {
+  padding-right: 20px;
+}
+
+.list li {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body {
+  background-image: url(olive.jpg);
+  justify-content: center;
+  padding-bottom: 100px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+th {
+  background-color: rgba(88, 88, 0, 0.5);
+}
+
+.table tbody tr:nth-of-type(odd) {
+  background-color: rgba(245, 245, 245, 0.8); 
+}
+
+.table tbody tr:last-of-type{
+  border-bottom: 4px solid rgba(88, 88, 0, 0.5);
+}
+
+
+@media only screen and (max-width: 850px) {
+  .navbar {
+    padding: 0;
+  }
+
+  .logo {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    width: 100%;
+    height: 0; /* Initially hide the mobile menu */
+    overflow: hidden; /* Hide overflow content */
+    background-color: #808000;
+    color:black;
+    transition: height 0.5s ease; /* Apply smooth transition to height */
+  }
+
+  .mobile-menu{
+    margin-top: 0px;
+    border-bottom-right-radius: 30%;
+
+
+
+
+
+    .nav-links li{
+      margin: 30px auto;
+    }
+  
+
+  
+  
+  
+  .menu-btn {
+    display: block;
+  }
+
+ 
+
+  
+
+  
+
+  
+
+  
+
+  
+}}
+
+.oil-box {
+  padding: 30px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}

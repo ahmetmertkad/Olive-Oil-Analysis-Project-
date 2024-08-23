@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olive Oil Search</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <h1 class="logo">Olive Oil Quality</h1>
+        <ul class="nav-links">
+            <li class="active"><a href="{% url 'index' %}">Home</a></li>
+            {% if user.is_authenticated %}
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+            <li><a href="{% url 'table' %}">Table</a></li>
+            <li class="ctn"><a href="{% url 'styles' %}">Information</a></li>
+            <li><a href="{% url 'search' %}">Search</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li><a href="{% url 'user' %}">Account</a></li>
+            {% endif %}
+            {% if user.is_superuser %}
+            <li><a href="{% url 'admin:index' %}">Admin</a></li>
+            {% endif %}
+        </ul>
+        <img src="{% static 'images/menu-btn.png' %}" class="menu-btn">
+    </nav>
+
+    <div class="container">
+        <form action="{% url 'search' %}" method="GET">
+            <input type="text" name="q" placeholder="Search for Olive Oil">
+            <button type="submit">Search</button>
+        </form>
+        
+        <div class="widebox-wrapper">
+            <div class="wide-box">
+                {% if olive_oil_scores %}
+                    {% for oil in olive_oil_scores %}
+                    <div class="wide-box">
+                        <div class="oil-box">
+                            <p><strong>Name:</strong> {{ oil.name }}</p>
+                            <p><strong>Total Score:</strong> {{ oil.calculate_quality_score }}</p>
+                            <p><strong>Type:</strong> {{ oil.get_oil_type_display }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No results found.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
